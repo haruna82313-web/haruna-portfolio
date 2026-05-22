@@ -1,5 +1,13 @@
 const projectsData = [
     {
+        title: "EDUTRACK-UG",
+        desc: "A smart school management dashboard for tracking student records and attendance.",
+        stack: ["React", "Node.js", "Supabase"],
+        demoLink: "https://edutrack-ug.vercel.app",
+        repoLink: "#",
+        screenshot: "images/5.png"
+    },
+    {
         title: "UG-JOBSWIPE",
         desc: "A job discovery and application platform tailored for local opportunities in Uganda.",
         stack: ["React", "Node.js", "Supabase"],
@@ -47,7 +55,35 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
     initBackToTop();
     initStickyHeader();
+    initDynamicText();
 });
+
+// Dynamic Text Switcher
+function initDynamicText() {
+    const textElement = document.getElementById("dynamic-text");
+    if (!textElement) return;
+
+    const phrases = [
+        "BUSINESSES AND TEAMS",
+        "SCHOOLS AND INSTITUTIONS",
+        "CLINICS AND PHARMACIES",
+        "WHOLESALERS AND RETAILERS",
+        "SUPERMARKETS",
+        "BANKS AND SACCOS"
+    ];
+    
+    let currentIndex = 0;
+
+    setInterval(() => {
+        textElement.classList.add("fade-out");
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % phrases.length;
+            textElement.textContent = phrases[currentIndex];
+            textElement.classList.remove("fade-out");
+        }, 500); // Wait for fade out animation
+    }, 5000);
+}
 
 // Preloader
 function initPreloader() {
